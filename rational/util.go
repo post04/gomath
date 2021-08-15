@@ -5,13 +5,13 @@ import "math/big"
 // Simplify simplifies the rational number by dividing it's numerator and
 // denominator by the GCD.
 func (ev *Rational) Simplify() {
-	if ev.denominator < 0 {
-		ev.numerator *= -1
-		ev.denominator *= -1
+	if ev.Denominator < 0 {
+		ev.Numerator *= -1
+		ev.Denominator *= -1
 	}
 
-	currentNumerator := ev.numerator
-	currentDenominator := ev.denominator
+	currentNumerator := ev.Numerator
+	currentDenominator := ev.Denominator
 
 	if currentNumerator < 0 && currentDenominator > 0 {
 		currentNumerator *= -1
@@ -25,14 +25,14 @@ func (ev *Rational) Simplify() {
 	gcd := new(big.Int).GCD(nil, nil, n, d).Int64()
 
 	if gcd > 1 {
-		ev.numerator /= gcd
-		ev.denominator /= gcd
+		ev.Numerator /= gcd
+		ev.Denominator /= gcd
 	}
 }
 
 // IsNatural determines whether the rational number is also natural.
 func (ev Rational) IsNatural() bool {
-	if ev.numerator%ev.denominator == 0 {
+	if ev.Numerator%ev.Denominator == 0 {
 		return true
 	}
 	return false
@@ -40,27 +40,27 @@ func (ev Rational) IsNatural() bool {
 
 // Float64 returns the float64 representation of a rational number.
 func (ev Rational) Float64() float64 {
-	return float64(ev.numerator) / float64(ev.denominator)
+	return float64(ev.Numerator) / float64(ev.Denominator)
 }
 
 // Get returns a value.
 func (ev Rational) Get() (numerator, denominator int64) {
-	return ev.numerator, ev.denominator
+	return ev.Numerator, ev.Denominator
 }
 
 // GetNumerator returns a numerator.
 func (ev Rational) GetNumerator() int64 {
-	return ev.numerator
+	return ev.Numerator
 }
 
 // GetDenominator returns a denominator.
 func (ev Rational) GetDenominator() int64 {
-	return ev.denominator
+	return ev.Denominator
 }
 
 // GetModule returns rational number's module.
 func (ev Rational) GetModule() Rational {
-	solveNegatives(&ev.numerator, &ev.denominator)
+	solveNegatives(&ev.Numerator, &ev.Denominator)
 	if ev.LessThanNum(0) {
 		ev = ev.MultiplyByNum(-1)
 	}
@@ -69,7 +69,7 @@ func (ev Rational) GetModule() Rational {
 
 // IsNull determines whether the value is zero.
 func (ev Rational) IsNull() (n bool) {
-	if ev.numerator == 0 {
+	if ev.Numerator == 0 {
 		n = true
 	}
 	return

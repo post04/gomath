@@ -8,15 +8,15 @@ import (
 
 // Rational stores a rational value.
 type Rational struct {
-	numerator   int64
-	denominator int64
+	Numerator   int64
+	Denominator int64
 }
 
 // New returns new rational number representation.
 func New(n, d int64) Rational {
 	return Rational{
-		numerator:   n,
-		denominator: d,
+		Numerator:   n,
+		Denominator: d,
 	}
 }
 
@@ -51,8 +51,8 @@ func NewFromFloat(f float64) (ev Rational, err error) {
 
 // Divide divides a rational value by the provided one.
 func (ev Rational) Divide(e Rational) (nv Rational) {
-	newNumerator := ev.numerator * e.denominator
-	newDenominator := ev.denominator * e.numerator
+	newNumerator := ev.Numerator * e.Denominator
+	newDenominator := ev.Denominator * e.Numerator
 	if newNumerator == newDenominator {
 		nv = New(1, 1)
 	} else {
@@ -70,9 +70,9 @@ func (ev Rational) DivideByNum(i int64) Rational {
 
 // Multiply multiplies a rational value by provided one.
 func (ev Rational) Multiply(e Rational) (nv Rational) {
-	newNumerator := ev.numerator * e.numerator
+	newNumerator := ev.Numerator * e.Numerator
 	if newNumerator != 0 {
-		newDenominator := ev.denominator * e.denominator
+		newDenominator := ev.Denominator * e.Denominator
 		if newNumerator == newDenominator {
 			nv = New(1, 1)
 		} else {
@@ -93,9 +93,9 @@ func (ev Rational) MultiplyByNum(i int64) Rational {
 
 // Add adds the provided rational value to an existing one.
 func (ev Rational) Add(e Rational) (nv Rational) {
-	newNumerator := ev.numerator*e.denominator + e.numerator*ev.denominator
+	newNumerator := ev.Numerator*e.Denominator + e.Numerator*ev.Denominator
 	if newNumerator != 0 {
-		newDenominator := ev.denominator * e.denominator
+		newDenominator := ev.Denominator * e.Denominator
 		if newNumerator == newDenominator {
 			nv = New(1, 1)
 		} else {
@@ -116,9 +116,9 @@ func (ev Rational) AddNum(i int64) Rational {
 
 // Subtract subtracts the provided rational value from an existing one.
 func (ev Rational) Subtract(e Rational) (nv Rational) {
-	newNumerator := ev.numerator*e.denominator - e.numerator*ev.denominator
+	newNumerator := ev.Numerator*e.Denominator - e.Numerator*ev.Denominator
 	if newNumerator != 0 {
-		newDenominator := ev.denominator * e.denominator
+		newDenominator := ev.Denominator * e.Denominator
 		if newNumerator == newDenominator {
 			nv = New(1, 1)
 		} else {
